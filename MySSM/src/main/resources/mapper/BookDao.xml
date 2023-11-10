@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wes.myssm.dao.BookDao">
+	<!-- 目的：为dao接口方法提供sql语句配置 -->
+	<select id="queryById" resultType="Book" parameterType="long">
+		<!-- 具體的sql -->
+		SELECT
+			BOOKID,
+			BNAME,
+			BNUMBER
+		FROM
+			BOOK
+		WHERE
+			BOOKID = #{bookId}
+	</select>
+	
+	<select id="queryAll" resultType="Book">
+		SELECT
+			BOOK_ID,
+			BNAME,
+			BNUMBER
+		FROM
+			BOOK
+		ORDER BY
+			BOOK_ID
+	</select>
+	
+	<update id="reduceNumber">
+		UPDATE BOOK
+		SET number = number - 1
+		WHERE
+			BOOK_ID = #{bookId}
+		AND number > 0
+	</update>
+	
+	<insert id="insertBook">
+		INSERT INTO BOOK VALUES(1004, '測試', 10)
+	</insert>
+</mapper>
