@@ -6,12 +6,17 @@ import com.wes.myssm.entity.Appointment;
 
 public interface AppointmentDao {
 	/**
-	 * 插入预约图书记录
+	 * 插入預约圖書紀錄
 	 * 
 	 * @param bookId
 	 * @param studentId
 	 * @return 插入的行数
 	 */
+	
+	void insertTest();
+	
+	Appointment queryById(@Param("pka") long pka);
+	
 	int insertAppointment(@Param("bookId") long bookId, @Param("studentId") long studentId);
 
 	/**

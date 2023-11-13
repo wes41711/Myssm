@@ -36,6 +36,6 @@
 	</update>
 	
 	<insert id="insertBook">
-		INSERT INTO BOOK VALUES(1004, '測試', 10)
+		INSERT INTO BOOK VALUES('1003', '編譯原理', 10)
 	</insert>
 </mapper>

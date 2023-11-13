@@ -10,7 +10,22 @@ public class AppointmentDaoTest extends BaseTest {
 
 	@Autowired
 	private AppointmentDao appointmentDao;
-
+	
+	
+	@Test
+	public void testInsertTest() throws Exception {
+		System.out.println("進入insert");
+		appointmentDao.insertTest();
+	}
+	
+	
+	@Test
+	public void testQuertById() throws Exception {
+		System.out.println("進入qyeryById");
+//		Appointment a = appointmentDao.queryById(2);
+//		System.out.println(a);
+	}
+	
 	@Test
 	public void testInsertAppointment() throws Exception {
 		long bookId = 1000;

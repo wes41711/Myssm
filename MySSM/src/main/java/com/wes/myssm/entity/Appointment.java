@@ -2,15 +2,34 @@ package com.wes.myssm.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+
 public class Appointment {
-	private long bookId;// 图书ID
+	private long pka; // PK
 
-	private long studentId;// 学号
+	private long bookId;// 圖書ID
 
-	private Date appointTime;// 预约时间
+	private long studentId;// 學號
 
-	// 多对一的复合属性
-	private Book book;// 图书实体
+	@Column(name = "APPOINT_DATE")
+	private Date appointDate;// 預約時間
+
+	// 多對一
+	private Book book;
+
+	/**
+	 * @return the pka
+	 */
+	public long getPka() {
+		return pka;
+	}
+
+	/**
+	 * @param pka the pka to set
+	 */
+	public void setPka(long pka) {
+		this.pka = pka;
+	}
 
 	/**
 	 * @return the bookId
@@ -41,17 +60,17 @@ public class Appointment {
 	}
 
 	/**
-	 * @return the appointTime
+	 * @return the appointDate
 	 */
-	public Date getAppointTime() {
-		return appointTime;
+	public Date getAppointDate() {
+		return appointDate;
 	}
 
 	/**
-	 * @param appointTime the appointTime to set
+	 * @param appointDate the appointDate to set
 	 */
-	public void setAppointTime(Date appointTime) {
-		this.appointTime = appointTime;
+	public void setAppointDate(Date appointDate) {
+		this.appointDate = appointDate;
 	}
 
 	/**
@@ -70,9 +89,8 @@ public class Appointment {
 
 	@Override
 	public String toString() {
-		return "Appointment [bookId=" + bookId + ", studentId=" + studentId + ", appointTime=" + appointTime + ", book="
-				+ book + "]";
+		return "Appointment [pka=" + pka + ", bookId=" + bookId + ", studentId=" + studentId + ", appointDate="
+				+ appointDate + ", book=" + book + "]";
 	}
-	
-	
+
 }
