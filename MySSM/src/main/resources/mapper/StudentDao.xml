@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wes.myssm.dao.StudentDao">
+	<!-- 目的：为dao接口方法提供sql语句配置 -->
+	
+ 	<!-- ResultMap配置，定义了对象关系映射 --> 
+    <resultMap id="StudentResultMap" type="com.wes.myssm.entity.Student">
+    	<id property="sno" column="SNO"/>
+        <result property="sname" column="SNAME"/>
+        <result property="sbday" column="SBDAY"/>
+        <result property="ssex" column="SSEX"/>
+        <result property="smail" column="SMAIL"/>
+        <result property="spwd" column="SPWD"/>
+    	<!-- 一对一的关系映射：配置封装内容-->
+        <association property="tno" javaType="Teacher">
+        	<id property="tno" column="TNO"/>
+            <result property="tname" column="TNAME"/>
+            <result property="tbday" column="TBDAY" />
+            <result property="tsex" column="TSEX"/>
+            <result property="tmail" column="TMAIL"/>
+            <result property="tpwd" column="TPWD"/>
+        </association>
+    </resultMap>
+	
+	<select id="queryById" resultMap="StudentResultMap" parameterType="String">
+		<!-- 具體的sql -->
+		SELECT
+			*
+		FROM
+			STUDENT S
+		INNER JOIN TEACHER T
+		ON S.TNO = T.TNO
+		WHERE S.SNO = #{sno}
+	</select>
+	
+	<select id="queryAll" resultMap="StudentResultMap">
+		SELECT
+			*
+		FROM
+			STUDENT S
+		INNER JOIN TEACHER T
+		ON S.TNO = T.TNO
+	</select>
+	
+	<insert id="insertStudent" parameterType="Student">
+		INSERT INTO STUDENT VALUES(#{sno}, #{sname}, #{sbday}, #{ssex}, #{smail}, #{spwd}, #{tno.tno})
+	</insert>
+	
+	<update id="updateStudent" parameterType="Student">
+		UPDATE STUDENT
+		SET SNAME = #{sname},
+			SBDAY = #{sbday},
+			SSEX = #{ssex},
+			SMAIL = #{smail},
+			SPWD = #{spwd},
+			TNO = #{tno.tno}
+		WHERE SNO = #{sno}
+	</update>
+	
+	<delete id="deleteStudent" parameterType="String">
+		DELETE STUDENT WHERE SNO = #{sno}
+	</delete>
+</mapper>
