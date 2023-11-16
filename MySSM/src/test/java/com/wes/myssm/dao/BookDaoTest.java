@@ -28,13 +28,13 @@ public class BookDaoTest extends BaseTest {
 	
 	@Test
 	public void testInsertBook() throws Exception {
-		Book book = new Book(1004, "自學的100種方法", 10);
+		Book book = new Book("1004", "自學的100種方法", 10);
 		bookDao.insertBook(book);
 	}
 	
 	@Test
 	public void testUpdateBook() throws Exception{
-		Book book = new Book(1004, "自學的200種方法", 10);
+		Book book = new Book("1004", "自學的200種方法", 10);
 		bookDao.updateBook(book);
 	}
 	
