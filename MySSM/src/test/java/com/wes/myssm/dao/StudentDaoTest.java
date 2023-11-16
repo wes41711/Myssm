@@ -19,10 +19,7 @@ public class StudentDaoTest extends BaseTest {
 
 	@Test
 	public void testQueryById() throws Exception {
-		System.out.println("1---------------");
-		String sno = "A02";
-		Student s = studentDao.queryById(sno);
-		System.out.println("查詢結果為:" + s);
+		System.out.println("查詢結果為:" + studentDao.queryById("A02"));
 	}
 
 	@Test

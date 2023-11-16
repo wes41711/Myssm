@@ -1,23 +1,43 @@
 package com.wes.myssm.entity;
 
 public class Book {
-	private long bookId;// 圖書ID
+	private String bookId;// 圖書ID
 
 	private String bName;// 圖書名稱
 
 	private int bNumber;// 館藏數量
 
 	/**
+	 * 
+	 */
+	public Book() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param bookId
+	 * @param bName
+	 * @param bNumber
+	 */
+	public Book(String bookId, String bName, int bNumber) {
+		super();
+		this.bookId = bookId;
+		this.bName = bName;
+		this.bNumber = bNumber;
+	}
+
+	/**
 	 * @return the bookId
 	 */
-	public long getBookId() {
+	public String getBookId() {
 		return bookId;
 	}
 
 	/**
 	 * @param bookId the bookId to set
 	 */
-	public void setBookId(long bookId) {
+	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}
 

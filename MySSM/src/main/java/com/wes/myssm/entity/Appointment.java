@@ -2,61 +2,81 @@ package com.wes.myssm.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 public class Appointment {
-	private long pka; // PK
+	private String pka; // PK
 
-	private long bookId;// 圖書ID
+	private String bookId;// 圖書ID
 
-	private long studentId;// 學號
+	private String noId;// 學號
 
-	@Column(name = "APPOINT_DATE")
 	private Date appointDate;// 預約時間
 
-	// 多對一
-	private Book book;
+	private Book book;// 一對一
+
+	/**
+	 * 
+	 */
+	public Appointment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param pka
+	 * @param bookId
+	 * @param noId
+	 * @param appointDate
+	 * @param book
+	 */
+	public Appointment(String pka, String bookId, String noId, Date appointDate, Book book) {
+		super();
+		this.pka = pka;
+		this.bookId = bookId;
+		this.noId = noId;
+		this.appointDate = appointDate;
+		this.book = book;
+	}
 
 	/**
 	 * @return the pka
 	 */
-	public long getPka() {
+	public String getPka() {
 		return pka;
 	}
 
 	/**
 	 * @param pka the pka to set
 	 */
-	public void setPka(long pka) {
+	public void setPka(String pka) {
 		this.pka = pka;
 	}
 
 	/**
 	 * @return the bookId
 	 */
-	public long getBookId() {
+	public String getBookId() {
 		return bookId;
 	}
 
 	/**
 	 * @param bookId the bookId to set
 	 */
-	public void setBookId(long bookId) {
+	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}
 
 	/**
-	 * @return the studentId
+	 * @return the noId
 	 */
-	public long getStudentId() {
-		return studentId;
+	public String getNoId() {
+		return noId;
 	}
 
 	/**
-	 * @param studentId the studentId to set
+	 * @param noId the noId to set
 	 */
-	public void setStudentId(long studentId) {
-		this.studentId = studentId;
+	public void setNoId(String noId) {
+		this.noId = noId;
 	}
 
 	/**
@@ -89,8 +109,8 @@ public class Appointment {
 
 	@Override
 	public String toString() {
-		return "Appointment [pka=" + pka + ", bookId=" + bookId + ", studentId=" + studentId + ", appointDate="
-				+ appointDate + ", book=" + book + "]";
+		return "Appointment [pka=" + pka + ", bookId=" + bookId + ", noId=" + noId + ", appointDate=" + appointDate
+				+ ", book=" + book + "]";
 	}
 
 }

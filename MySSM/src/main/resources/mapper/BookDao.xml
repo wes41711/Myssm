@@ -2,8 +2,14 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 目的：为dao接口方法提供sql语句配置 -->
 <mapper namespace="com.wes.myssm.dao.BookDao">
-	<!-- 目的：为dao接口方法提供sql语句配置 -->
+<!-- 	ResultMap配置，定義了對象關係映射 -->
+<resultMap id="BookResultMap" type="Book" >
+	<id property="bookId" column="BOOK_ID"/>
+	<result property="bName" column="BNAME"/>
+	<result property="bNumber" column="BNUMBER"/>
+</resultMap>
 	<select id="queryById" resultType="Book" parameterType="long">
 		<!-- 具體的sql -->
 		SELECT
@@ -14,7 +20,7 @@
 			BOOK_ID = #{bookId}
 	</select>
 	
-	<select id="queryAll" resultType="Book">
+	<select id="queryAllBook" resultMap="BookResultMap">
 		SELECT
 			BOOK_ID,
 			BNAME,
@@ -25,6 +31,27 @@
 			BOOK_ID
 	</select>
 	
+	<insert id="insertBook" parameterType="Book">
+		INSERT INTO BOOK VALUES(#{bookId}, #{bName}, #{bNumber})
+	</insert>
+	
+	<update id="updateBook" parameterType="Book">
+		UPDATE 
+			BOOK
+		SET
+			BNAME = #{bName},
+			BNUMBER = #{bNumber}
+		WHERE 
+			BOOK_ID = #{bookId}
+	</update>
+	
+	<delete id="deleteBook" parameterType="long">
+		DELETE 
+			BOOK
+		WHERE 
+			BOOK_ID = #{bookId}
+	</delete>
+	
 	<update id="reduceNumber">
 		UPDATE BOOK
 		SET number = number - 1
@@ -32,8 +59,4 @@
 			BOOK_ID = #{bookId}
 		AND number > 0
 	</update>
-	
-	<insert id="insertBook">
-		INSERT INTO BOOK VALUES('1003', '編譯原理', 10)
-	</insert>
 </mapper>

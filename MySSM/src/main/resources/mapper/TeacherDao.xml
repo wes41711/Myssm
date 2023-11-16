@@ -5,35 +5,61 @@
 <mapper namespace="com.wes.myssm.dao.TeacherDao">
 	<!-- 目的：为dao接口方法提供sql语句配置 -->
 	
-<select id="queryById" resultType="Teacher" parameterType="String">
-    SELECT
-        *
-    FROM
-        TEACHER
-    WHERE
-        TNO = #{tno}
-</select>
+	<!-- 定義Teacher的resultMap-->
+    <resultMap id="TeacherResultMap" type="Teacher">
+        <id property="tno" column="TNO"></id>
+        <result property="tname" column="TNAME"></result>
+        <result property="tbday" column="TBDAY"></result>
+        <result property="tsex" column="TSEX"></result>
+        <result property="tmail" column="TMAIL"></result>
+        <result property="tpwd" column="TPWD"></result>
+        <!-- 配置Teacher對象中student集合的映射 -->
+        <collection property="student" ofType="Student">
+            <id property="sno" column="SNO"/>
+        	<result property="sname" column="SNAME"/>
+        	<result property="sbday" column="SBDAY"/>
+        	<result property="ssex" column="SSEX"/>
+        	<result property="smail" column="SMAIL"/>
+       		<result property="spwd" column="SPWD"/>
+        </collection>
+    </resultMap>
 	
-	<select id="queryAll" resultType="Book">
-		SELECT
-			BOOK_ID,
-			BNAME,
-			BNUMBER
-		FROM
-			BOOK
-		ORDER BY
-			BOOK_ID
+	<select id="queryById" resultType="Teacher" parameterType="String">
+    	SELECT
+        	*
+    	FROM
+        	TEACHER
+    	WHERE
+        	TNO = #{tno}
 	</select>
 	
-	<update id="reduceNumber">
-		UPDATE BOOK
-		SET number = number - 1
-		WHERE
-			BOOK_ID = #{bookId}
-		AND number > 0
+	<select id="queryAll" resultMap="TeacherResultMap">
+		SELECT
+			*
+		FROM
+			TEACHER T
+		INNER JOIN STUDENT S
+		ON S.TNO = T.TNO
+	</select>
+	
+	<insert id="insertTeacher">
+		INSERT INTO TEACHER VALUES(#{tno}, #{tname}, #{tbday}, #{tsex}, #{tmail}, #{tpwd})	
+	</insert>
+	
+	<update id="updateTeacher" parameterType="Teacher">
+		UPDATE
+			TEACHER
+		SET
+			TNAME = #{tno},
+	 		TBDAY = #{tbday},
+	 		TSEX = #{tsex},
+	 		TMAIL = #{tmail},
+	 		TPWD = #{tpwd}
+	 	WHERE
+	 		TNO = #{tno}
 	</update>
 	
-	<insert id="insertBook">
-		INSERT INTO BOOK VALUES('1003', '編譯原理', 10)
-	</insert>
+	<delete id="deleteTeacher" parameterType="String">
+		DELETE TEACHER WHERE TNO = #{tno}
+	</delete>
 </mapper>

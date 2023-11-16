@@ -10,29 +10,37 @@ import com.wes.myssm.entity.Book;
 
 public class BookDaoTest extends BaseTest {
 	@Autowired
-	private BookDao bookDao;
-	
-	@Test
-	public void testInsertBook()throws Exception {
-		bookDao.insertBook();
-	}
-	
+	private BookDao bookDao;	
 
 	@Test
 	public void testQueryById() throws Exception {
-		System.out.println("1---------------");
 		long bookId = 1003;
-		Book book = bookDao.queryById(bookId);
-		System.out.println(book);
+		System.out.println("查詢結果為:" + bookDao.queryById(bookId));
 	}
 
 	@Test
 	public void testQueryAll() throws Exception {
-		System.out.println("2---------------");
-		List<Book> books = bookDao.queryAll(0, 4);
+		List<Book> books = bookDao.queryAllBook();
 		for (Book book : books) {
 			System.out.println(book);
 		}
+	}
+	
+	@Test
+	public void testInsertBook() throws Exception {
+		Book book = new Book(1004, "自學的100種方法", 10);
+		bookDao.insertBook(book);
+	}
+	
+	@Test
+	public void testUpdateBook() throws Exception{
+		Book book = new Book(1004, "自學的200種方法", 10);
+		bookDao.updateBook(book);
+	}
+	
+	@Test
+	public void testDeleteBook() throws Exception{
+		bookDao.deleteBook(1004);
 	}
 
 	@Test

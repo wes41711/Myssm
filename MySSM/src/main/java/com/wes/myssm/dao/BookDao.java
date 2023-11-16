@@ -8,8 +8,6 @@ import com.wes.myssm.entity.Book;
 
 public interface BookDao {
 	
-	void insertBook();
-	
 	/**
 	 * 通过ID查询單本圖書
 	 * 
@@ -25,8 +23,14 @@ public interface BookDao {
 	 * @param limit 查询條數
 	 * @return
 	 */
-	List<Book> queryAll(@Param("offset") int offset, @Param("limit") int limit);
+	List<Book> queryAllBook();
 
+	void insertBook(Book b);
+	
+	void updateBook(Book b);
+	
+	void deleteBook(long b);
+	
 	/**
 	 * 减少馆藏数量
 	 * 
