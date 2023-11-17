@@ -38,9 +38,9 @@ body {
 	<div class="textbody">
 		<h1>歡迎使用師生圖書系統</h1>
 		<a class="btn btn-outline-dark btn-lg mt-5"
-		   href="${pageContext.request.contextPath}/login"><strong>開始使用</strong></a>
+		   href="${pageContext.request.contextPath}/returnLogin"><strong>登入</strong></a>
 		<a class="btn btn-outline-dark btn-lg mt-5"
-		   href="${pageContext.request.contextPath}/login"><strong>登入</strong></a>
+		   href="${pageContext.request.contextPath}/returnSignIn"><strong>註冊</strong></a>
 	</div>
 
 </body>

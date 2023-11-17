@@ -32,26 +32,26 @@ public class TeacherDaoTest extends BaseTest {
 	@Test
 	public void testInsertTeacher() throws Exception {
 		Teacher teacher = new Teacher();
-		teacher.setTno("T006");
-		teacher.setTname("張老師");
+		teacher.setNo("T006");
+		teacher.setName("張老師");
 		Date currentDate = new Date();
-		teacher.setTbday(currentDate);//Date
-		teacher.setTsex(1);
-		teacher.setTmail("jao41711@gmail.com");
-		teacher.setTpwd("123456789");
+		teacher.setBday(currentDate);//Date
+		teacher.setSex(1);
+		teacher.setMail("jao41711@gmail.com");
+		teacher.setPwd("123456789");
 		System.out.println("3.新增結果為:" + teacherDao.insertTeacher(teacher));
 	}
 	
 	@Test
 	public void testUpdateTeacher() throws Exception {
 		Teacher teacher = new Teacher();
-		teacher.setTno("T006");
-		teacher.setTname("楊老師");
+		teacher.setNo("T006");
+		teacher.setName("楊老師");
 		Date currentDate = new Date();
-		teacher.setTbday(currentDate);//Date
-		teacher.setTsex(0);
-		teacher.setTmail("jao41711@gmail.com");
-		teacher.setTpwd("123456789");
+		teacher.setBday(currentDate);//Date
+		teacher.setSex(0);
+		teacher.setMail("jao41711@gmail.com");
+		teacher.setPwd("123456789");
 		System.out.println("4.修改結果為:" + teacherDao.updateTeacher(teacher));
 	}
 	

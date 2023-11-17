@@ -16,6 +16,13 @@ public class StudentDaoTest extends BaseTest {
 	
 	@Autowired
 	private TeacherDao teacherDao;
+	
+	@Test
+	public void Test() throws Exception{
+		Student student = new Student();
+		
+		student.toString();
+	}
 
 	@Test
 	public void testQueryById() throws Exception {
@@ -36,14 +43,14 @@ public class StudentDaoTest extends BaseTest {
 	public void testInsertStudent() throws Exception {
 		Student student = new Student();
 		Teacher teacher = teacherDao.queryById("T001");
-		student.setSno("A08");
-		student.setSname("楊大帥");
+		student.setNo("A07");
+		student.setName("楊大帥");
 		Date currentDate = new Date();
-		student.setSbday(currentDate); //Date
-		student.setSmail("jao41711@gmail.com");
-		student.setSsex(1);
-		student.setSpwd("1234");
-		student.setTno(teacher);
+		student.setBday(currentDate); //Date
+		student.setMail("jao41711@gmail.com");
+		student.setSex(1);
+		student.setPwd("1234");
+		student.setTeacher(teacher);
 		System.out.println("新增結果為:" + studentDao.insertStudent(student));
 	}
 	
@@ -51,14 +58,14 @@ public class StudentDaoTest extends BaseTest {
 	public void testUpdateStudent() throws Exception {
 		Student student = new Student();
 		Teacher teacher = teacherDao.queryById("T002");
-		student.setSno("A08");
-		student.setSname("楊大帥帥");
+		student.setNo("A06");
+		student.setName("張大帥帥");
 		Date currentDate = new Date();
-		student.setSbday(currentDate); //Date
-		student.setSmail("jao41711@gmail.com");
-		student.setSsex(0);
-		student.setSpwd("1234");
-		student.setTno(teacher);
+		student.setBday(currentDate); //Date
+		student.setMail("jao41711@gmail.com");
+		student.setSex(0);
+		student.setPwd("1234");
+		student.setTeacher(teacher);
 		System.out.println("修改結果為:" + studentDao.updateStudent(student));
 	}
 	

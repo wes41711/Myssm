@@ -3,127 +3,100 @@ package com.wes.myssm.entity;
 import java.util.Date;
 import java.util.List;
 
-public class Teacher {
-	private String tno; //Id
-	private String tname;
-	private Date tbday;
-	private Integer tsex;
-	private String tmail;
-	private String tpwd;
+import com.wes.myssm.bean.User;
+
+public class Teacher extends User {
+	private String no; //Id
+	private String name;
+	private Date bday;
+	private Integer sex;
+	private String mail;
+	private String pwd;
 	
 	private List<Student> student;
 
 	/**
-	 * 
+	 * @return the no
 	 */
-	public Teacher() {
-		super();
-		// TODO Auto-generated constructor stub
+	public String getNo() {
+		return no;
 	}
 
 	/**
-	 * @param tno
-	 * @param tname
-	 * @param tbday
-	 * @param tsex
-	 * @param tmail
-	 * @param tpwd
-	 * @param student
+	 * @param no the no to set
 	 */
-	public Teacher(String tno, String tname, Date tbday, Integer tsex, String tmail, String tpwd,
-			List<Student> student) {
-		super();
-		this.tno = tno;
-		this.tname = tname;
-		this.tbday = tbday;
-		this.tsex = tsex;
-		this.tmail = tmail;
-		this.tpwd = tpwd;
-		this.student = student;
+	public void setNo(String no) {
+		this.no = no;
 	}
 
 	/**
-	 * @return the tno
+	 * @return the name
 	 */
-	public String getTno() {
-		return tno;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param tno the tno to set
+	 * @param name the name to set
 	 */
-	public void setTno(String tno) {
-		this.tno = tno;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
-	 * @return the tname
+	 * @return the bday
 	 */
-	public String getTname() {
-		return tname;
+	public Date getBday() {
+		return bday;
 	}
 
 	/**
-	 * @param tname the tname to set
+	 * @param bday the bday to set
 	 */
-	public void setTname(String tname) {
-		this.tname = tname;
+	public void setBday(Date bday) {
+		this.bday = bday;
 	}
 
 	/**
-	 * @return the tbday
+	 * @return the sex
 	 */
-	public Date getTbday() {
-		return tbday;
+	public Integer getSex() {
+		return sex;
 	}
 
 	/**
-	 * @param tbday the tbday to set
+	 * @param sex the sex to set
 	 */
-	public void setTbday(Date tbday) {
-		this.tbday = tbday;
+	public void setSex(Integer sex) {
+		this.sex = sex;
 	}
 
 	/**
-	 * @return the tsex
+	 * @return the mail
 	 */
-	public Integer getTsex() {
-		return tsex;
+	public String getMail() {
+		return mail;
 	}
 
 	/**
-	 * @param tsex the tsex to set
+	 * @param mail the mail to set
 	 */
-	public void setTsex(Integer tsex) {
-		this.tsex = tsex;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
 	/**
-	 * @return the tmail
+	 * @return the pwd
 	 */
-	public String getTmail() {
-		return tmail;
+	public String getPwd() {
+		return pwd;
 	}
 
 	/**
-	 * @param tmail the tmail to set
+	 * @param pwd the pwd to set
 	 */
-	public void setTmail(String tmail) {
-		this.tmail = tmail;
-	}
-
-	/**
-	 * @return the tpwd
-	 */
-	public String getTpwd() {
-		return tpwd;
-	}
-
-	/**
-	 * @param tpwd the tpwd to set
-	 */
-	public void setTpwd(String tpwd) {
-		this.tpwd = tpwd;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 	/**
@@ -142,8 +115,10 @@ public class Teacher {
 
 	@Override
 	public String toString() {
-		return "Teacher [tno=" + tno + ", tname=" + tname + ", tbday=" + tbday + ", tsex=" + tsex + ", tmail=" + tmail
-				+ ", tpwd=" + tpwd + ", student=" + student + "]";
+		return "Teacher [no=" + no + ", name=" + name + ", bday=" + bday + ", sex=" + sex + ", mail=" + mail + ", pwd="
+				+ pwd + ", student=" + student + "]";
 	}
+
+	
 
 }

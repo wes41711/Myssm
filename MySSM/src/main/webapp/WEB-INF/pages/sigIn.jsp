@@ -57,9 +57,9 @@ body {
 </style>
 </head>
 <body>
-	<div class="container">
-		<h2>登入</h2>
-		<form action="${pageContext.request.contextPath}/login" method="post">
+<div class="container">
+		<h2>註冊</h2>
+		<form action="${pageContext.request.contextPath}/sigIn" method="post" modelAtribute="User">
 			<div class="form-group">
 				<label for="id">帳號:</label> <input type="text" id="id"
 					name="id" required>
@@ -69,7 +69,7 @@ body {
 					name="pwd" required>
 			</div>
 			<div class="form-group">
-				<input type="submit" value="登入">
+				<input type="submit" value="註冊">
 			</div>
 		</form>
 		<a class="btn btn-outline-danger btn-sm"

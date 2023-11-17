@@ -15,7 +15,7 @@ public interface BookService {
 	 * @param bookId
 	 * @return
 	 */
-	Book getById(long bookId);
+	Book getById(String bookId);
 
 	/**
 	 * 查询所有图书
@@ -31,6 +31,6 @@ public interface BookService {
 	 * @param studentId
 	 * @return
 	 */
-	AppointExecution appoint(long bookId, long studentId);
+	AppointExecution appoint(String bookId, String studentId);
 
 }

@@ -2,35 +2,37 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- 目的：为dao接口方法提供sql语句配置 -->
 <mapper namespace="com.wes.myssm.dao.TeacherDao">
-	<!-- 目的：为dao接口方法提供sql语句配置 -->
-	
+
 	<!-- 定義Teacher的resultMap-->
     <resultMap id="TeacherResultMap" type="Teacher">
-        <id property="tno" column="TNO"></id>
-        <result property="tname" column="TNAME"></result>
-        <result property="tbday" column="TBDAY"></result>
-        <result property="tsex" column="TSEX"></result>
-        <result property="tmail" column="TMAIL"></result>
-        <result property="tpwd" column="TPWD"></result>
+        <id property="no" column="TNO"></id>
+        <result property="name" column="TNAME"></result>
+        <result property="bday" column="TBDAY"></result>
+        <result property="sex" column="TSEX"></result>
+        <result property="mail" column="TMAIL"></result>
+        <result property="pwd" column="TPWD"></result>
         <!-- 配置Teacher對象中student集合的映射 -->
         <collection property="student" ofType="Student">
-            <id property="sno" column="SNO"/>
-        	<result property="sname" column="SNAME"/>
-        	<result property="sbday" column="SBDAY"/>
-        	<result property="ssex" column="SSEX"/>
-        	<result property="smail" column="SMAIL"/>
-       		<result property="spwd" column="SPWD"/>
+            <id property="no" column="SNO"/>
+        	<result property="name" column="SNAME"/>
+        	<result property="bday" column="SBDAY"/>
+        	<result property="sex" column="SSEX"/>
+        	<result property="mail" column="SMAIL"/>
+       		<result property="pwd" column="SPWD"/>
         </collection>
     </resultMap>
 	
-	<select id="queryById" resultType="Teacher" parameterType="String">
+	<select id="queryById" resultMap="TeacherResultMap">
     	SELECT
         	*
     	FROM
-        	TEACHER
+        	TEACHER T
+        INNER JOIN STUDENT S
+        ON T.TNO = S.TNO 
     	WHERE
-        	TNO = #{tno}
+        	T.TNO = #{no}
 	</select>
 	
 	<select id="queryAll" resultMap="TeacherResultMap">
@@ -43,23 +45,23 @@
 	</select>
 	
 	<insert id="insertTeacher">
-		INSERT INTO TEACHER VALUES(#{tno}, #{tname}, #{tbday}, #{tsex}, #{tmail}, #{tpwd})	
+		INSERT INTO TEACHER VALUES(#{no}, #{name}, #{bday}, #{sex}, #{mail}, #{pwd})	
 	</insert>
 	
 	<update id="updateTeacher" parameterType="Teacher">
 		UPDATE
 			TEACHER
 		SET
-			TNAME = #{tno},
-	 		TBDAY = #{tbday},
-	 		TSEX = #{tsex},
-	 		TMAIL = #{tmail},
-	 		TPWD = #{tpwd}
+			TNAME = #{no},
+	 		TBDAY = #{bday},
+	 		TSEX = #{sex},
+	 		TMAIL = #{mail},
+	 		TPWD = #{pwd}
 	 	WHERE
-	 		TNO = #{tno}
+	 		TNO = #{no}
 	</update>
 	
 	<delete id="deleteTeacher" parameterType="String">
-		DELETE TEACHER WHERE TNO = #{tno}
+		DELETE TEACHER WHERE TNO = #{no}
 	</delete>
 </mapper>
