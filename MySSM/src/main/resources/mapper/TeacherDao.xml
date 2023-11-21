@@ -13,6 +13,7 @@
         <result property="sex" column="TSEX"></result>
         <result property="mail" column="TMAIL"></result>
         <result property="pwd" column="TPWD"></result>
+        <result property="cpwd" column="PWD"></result>
         <!-- 配置Teacher對象中student集合的映射 -->
         <collection property="student" ofType="Student">
             <id property="no" column="SNO"/>
@@ -21,6 +22,7 @@
         	<result property="sex" column="SSEX"/>
         	<result property="mail" column="SMAIL"/>
        		<result property="pwd" column="SPWD"/>
+       		<result property="cpwd" column="PWD"/>
         </collection>
     </resultMap>
 	
@@ -41,11 +43,11 @@
 		FROM
 			TEACHER T
 		INNER JOIN STUDENT S
-		ON S.TNO = T.TNO
+		ON (S.TNO = T.TNO OR S.TNO != T.TNO)
 	</select>
 	
 	<insert id="insertTeacher">
-		INSERT INTO TEACHER VALUES(#{no}, #{name}, #{bday}, #{sex}, #{mail}, #{pwd})	
+		INSERT INTO TEACHER VALUES(#{no}, #{name}, #{bday}, #{sex}, #{mail}, #{pwd}, #{cpwd})	
 	</insert>
 	
 	<update id="updateTeacher" parameterType="Teacher">
@@ -57,6 +59,7 @@
 	 		TSEX = #{sex},
 	 		TMAIL = #{mail},
 	 		TPWD = #{pwd}
+	 		PWD = #{cpwd}
 	 	WHERE
 	 		TNO = #{no}
 	</update>

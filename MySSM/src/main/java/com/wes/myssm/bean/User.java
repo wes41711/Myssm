@@ -2,13 +2,49 @@ package com.wes.myssm.bean;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.wes.myssm.entity.Student;
+import com.wes.myssm.entity.Teacher;
+
 public class User {
 	private String no; //id
 	private String name;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date bday;
 	private Integer sex;
 	private String mail;
 	private String pwd;
+	private String cpwd;
+	
+	
+	
+    public static User createUserByNo(String no, User user) {
+        if ("T".equals(no)) {
+            Teacher teacher = new Teacher();
+            teacher.setNo(user.no);
+            teacher.setName(user.name);
+            teacher.setBday(user.bday);
+            teacher.setSex(user.sex);
+            teacher.setMail(user.mail);
+            teacher.setPwd(user.pwd);
+            teacher.setCpwd(user.cpwd);
+            return teacher;
+        } else if ("A".equals(no)) {
+        	 Student student = new Student();
+             student.setNo(user.no);
+             student.setName(user.name);
+             student.setBday(user.bday);
+             student.setSex(user.sex);
+             student.setMail(user.mail);
+             student.setPwd(user.pwd);
+             student.setCpwd(user.cpwd);
+             return student;
+        }
+        return null;
+    }
+	
+	
 	/**
 	 * @return the no
 	 */
@@ -81,11 +117,22 @@ public class User {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+	/**
+	 * @return the cpwd
+	 */
+	public String getCpwd() {
+		return cpwd;
+	}
+	/**
+	 * @param cpwd the cpwd to set
+	 */
+	public void setCpwd(String cpwd) {
+		this.cpwd = cpwd;
+	}
 	@Override
 	public String toString() {
 		return "User [no=" + no + ", name=" + name + ", bday=" + bday + ", sex=" + sex + ", mail=" + mail + ", pwd="
-				+ pwd + "]";
+				+ pwd + ", cpwd=" + cpwd + "]";
 	}
-	
 	
 }

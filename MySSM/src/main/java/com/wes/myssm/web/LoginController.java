@@ -14,41 +14,27 @@ import com.wes.myssm.service.UserService;
 
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	private String message;
-	
+
 	@RequestMapping("/returnLogin")
-	public String returnLogin(){
+	public String returnLogin() {
 		System.out.println("進入Controller");
 		return "login";
 	}
-	
-	@RequestMapping("/returnSignIn")
-	public String returnSigIn() {
-		System.out.println("進入Controller");
-		return "sigIn";
-	}
-	
+
 	@RequestMapping("/login")
 	public ModelAndView login(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
 		System.out.println("in login");
-		
+
 		ModelAndView mv = new ModelAndView("show");
-		
+
 		Object obj = userService.checkId(id, pwd);
-		
-		mv.addObject("obj1", obj);
+
+		mv.addObject("obj", obj);
 		return mv;
-	}
-	
-	@RequestMapping("/sigIn")
-	public ModelAndView sigIn(@ModelAttribute User user) {
-		System.out.println("in sigIn");
-		
-		
-		return null;
 	}
 }

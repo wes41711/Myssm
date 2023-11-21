@@ -13,6 +13,7 @@
 		<result property="sex" column="SSEX" />
 		<result property="mail" column="SMAIL" />
 		<result property="pwd" column="SPWD" />
+		<result property="cpwd" column="PWD" />
 		<!-- 一对一的关系映射：配置封装内容 -->
 		<association property="teacher" javaType="Teacher">
 			<id property="no" column="TNO" />
@@ -20,7 +21,7 @@
 			<result property="bday" column="TBDAY" />
 			<result property="sex" column="TSEX" />
 			<result property="mail" column="TMAIL" />
-			<result property="pwd" column="TPWD" />
+			<result property="cpwd" column="PWD" />
 		</association>
 	</resultMap>
 
@@ -47,7 +48,7 @@
 	<insert id="insertStudent" parameterType="Student">
 		INSERT INTO STUDENT
     	VALUES(#{no}, #{name}, #{bday}, #{sex}, #{mail}, #{pwd}, 
-    	#{teacher.no, jdbcType=VARCHAR})
+    	#{teacher.no, jdbcType=VARCHAR}, #{cpwd})
 	</insert>
 
 	<update id="updateStudent" parameterType="Student">
@@ -57,7 +58,8 @@
 		SSEX = #{sex},
 		SMAIL = #{mail},
 		SPWD = #{pwd},
-		TNO = #{teacher.no, jdbcType=VARCHAR}
+		TNO = #{teacher.no, jdbcType=VARCHAR},
+		PWD = {cpwd}
 		WHERE SNO = #{no}
 	</update>
 

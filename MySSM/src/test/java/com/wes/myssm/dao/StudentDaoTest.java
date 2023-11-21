@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.wes.myssm.BaseTest;
+import com.wes.myssm.bean.User;
 import com.wes.myssm.entity.Student;
 import com.wes.myssm.entity.Teacher;
 
@@ -27,6 +28,15 @@ public class StudentDaoTest extends BaseTest {
 	@Test
 	public void testQueryById() throws Exception {
 		System.out.println("查詢結果為:" + studentDao.queryById("A02"));
+		
+		User user = studentDao.queryById("A02");
+		
+		System.out.println();
+		System.out.println("user:" + user);
+		System.out.println("中斷點");
+		Teacher teacher = (Teacher)user;
+		System.out.println("teacher:"+teacher);
+		
 	}
 
 	@Test

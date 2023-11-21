@@ -75,12 +75,12 @@ td {
 			</thead>
 			<tbody>
 					<tr>
-						<td>${obj1.getSno()}</td>
-						<td>${obj1.getSname()}</td>
-						<td>${obj1.getSbday()}</td>
-						<td>${obj1.getSsex() == 0 ? "女性" : "男性"}</td>
-						<td>${obj1.getSmail()}</td>
-						<td>${obj1.getSpwd()}</td>
+						<td>${obj.getSno()}</td>
+						<td>${obj.getSname()}</td>
+						<td>${obj.getSbday()}</td>
+						<td>${obj.getSsex() == 0 ? "女性" : "男性"}</td>
+						<td>${obj.getSmail()}</td>
+						<td>${obj.getSpwd()}</td>
 					</tr>
 			</tbody>
 		</table>

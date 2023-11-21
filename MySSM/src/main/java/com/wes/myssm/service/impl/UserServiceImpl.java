@@ -3,15 +3,19 @@ package com.wes.myssm.service.impl;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wes.myssm.bean.User;
 import com.wes.myssm.dao.StudentDao;
 import com.wes.myssm.dao.TeacherDao;
 import com.wes.myssm.entity.Student;
 import com.wes.myssm.entity.Teacher;
 import com.wes.myssm.service.UserService;
+
+import oracle.security.o5logon.b;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -23,6 +27,35 @@ public class UserServiceImpl implements UserService{
 	private StudentDao studentDao;
 	
 	private Object obj;
+	
+	public String createId(String id) {
+		
+		String no = "";
+		int num = 0;
+		
+		if(id.equalsIgnoreCase("T")) {
+			List<Teacher> teachers = teacherDao.queryAll();
+			num = teachers.size();
+			num++;
+			if(num < 10) {
+				no = "T00" + num;
+			}
+			else if(num < 100) {
+				no = "T0" + num;
+			}
+		}else{
+			List<Student> students = studentDao.queryAll();
+			num = students.size();
+			num++;
+			if(num < 10) {
+				no = "A0" + num;
+			}
+			else{
+				no = "A" + num;
+			}
+		}
+		return no;
+	}
 	
 	public Object checkId(String id, String pwd) {
 		
@@ -43,6 +76,26 @@ public class UserServiceImpl implements UserService{
 //			sysUser.setPassword(md5(sysUser.getPassword()));
 		
 		return obj;
+	}
+	
+	public boolean creatAccount(User user) {
+		 String idFirst[] = user.getNo().split("");
+		 boolean re = false;
+
+		 User userType = User.createUserByNo(idFirst[0],user);
+
+		 if (userType instanceof Teacher) {
+			 System.out.println("Teacher");
+			 Teacher teacher = (Teacher) userType;
+			 re = teacherDao.insertTeacher(teacher);
+		 }
+		 else if(userType instanceof Student) {
+			 System.out.println("Student");
+			 Student student = (Student) userType;
+			 re = studentDao.insertStudent(student);
+		    }
+
+		 return re;
 	}
 	
 	public static String convertMD5(String password) {
@@ -73,5 +126,9 @@ public class UserServiceImpl implements UserService{
 		return s;
 
 	}
+
+	
+
+
 
 }

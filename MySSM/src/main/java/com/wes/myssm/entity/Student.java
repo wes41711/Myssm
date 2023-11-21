@@ -5,48 +5,15 @@ import java.util.Date;
 import com.wes.myssm.bean.User;
 
 public class Student extends User {
-	
-	private String no; //Id
-	
+
+	private String no; // Id
 	private String name;
-	
 	private Date bday;
-
 	private Integer sex;
-	
 	private String mail;
-	
 	private String pwd;
-	
-	private Teacher teacher; //fk
-
-	/**
-	 * 
-	 */
-	public Student() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param no
-	 * @param name
-	 * @param bday
-	 * @param sex
-	 * @param mail
-	 * @param pwd
-	 * @param teacher
-	 */
-	public Student(String no, String name, Date bday, Integer sex, String mail, String pwd, Teacher teacher) {
-		super();
-		this.no = no;
-		this.name = name;
-		this.bday = bday;
-		this.sex = sex;
-		this.mail = mail;
-		this.pwd = pwd;
-		this.teacher = teacher;
-	}
+	private Teacher teacher; // fk
+	private String cpwd;
 
 	/**
 	 * @return the no
@@ -146,13 +113,24 @@ public class Student extends User {
 		this.teacher = teacher;
 	}
 
+	/**
+	 * @return the cpwd
+	 */
+	public String getCpwd() {
+		return cpwd;
+	}
+
+	/**
+	 * @param cpwd the cpwd to set
+	 */
+	public void setCpwd(String cpwd) {
+		this.cpwd = cpwd;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [no=" + no + ", name=" + name + ", bday=" + bday + ", sex=" + sex + ", mail=" + mail + ", pwd="
-				+ pwd + ", teacher=" + teacher + "]";
+				+ pwd + ", teacher=" + teacher + ", cpwd=" + cpwd + "]";
 	}
-
-
-	
 
 }
