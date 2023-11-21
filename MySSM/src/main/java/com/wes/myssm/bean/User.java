@@ -17,8 +17,7 @@ public class User {
 	private String pwd;
 	private String cpwd;
 	
-	
-	
+
     public static User createUserByNo(String no, User user) {
         if ("T".equals(no)) {
             Teacher teacher = new Teacher();
@@ -131,8 +130,8 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [no=" + no + ", name=" + name + ", bday=" + bday + ", sex=" + sex + ", mail=" + mail + ", pwd="
-				+ pwd + ", cpwd=" + cpwd + "]";
+		return "no=" + no + ", name=" + name + ", bday=" + bday + ", sex=" + sex + ", mail=" + mail + ", pwd="
+				+ pwd + ", cpwd=" + cpwd;
 	}
 	
 }

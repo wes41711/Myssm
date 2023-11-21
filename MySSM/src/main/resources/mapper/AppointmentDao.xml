@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wes.myssm.dao.AppointmentDao">
 
-	<resultMap id="AppointmentResultMap" type="Appointment">
+	<resultMap id="AppointmentResultMap" type="com.wes.myssm.entity.Appointment">
 		<id property="pka" column="PKA"/>
 		<result property="bookId" column="BOOK_ID"/>
 		<result property="noId" column="NO_ID"/>

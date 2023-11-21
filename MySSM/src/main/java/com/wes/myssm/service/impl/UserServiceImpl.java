@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService{
 		int num = 0;
 		
 		if(id.equalsIgnoreCase("T")) {
+			
 			List<Teacher> teachers = teacherDao.queryAll();
 			num = teachers.size();
 			num++;
@@ -79,6 +80,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public boolean creatAccount(User user) {
+		
 		 String idFirst[] = user.getNo().split("");
 		 boolean re = false;
 

@@ -46,7 +46,7 @@ $(function() {
     	var password = $("#pwd").val();
     	var checkPassword = $("#cpwd").val();
     	if(password != "" && checkPassword != ""){
-    		if(password !== checkPassword){
+    		if(password != checkPassword){
     			alert("請檢查密碼是否相同");
     		}
     	}

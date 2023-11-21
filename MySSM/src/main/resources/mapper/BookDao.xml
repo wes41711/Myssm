@@ -5,7 +5,7 @@
 <!-- 目的：为dao接口方法提供sql语句配置 -->
 <mapper namespace="com.wes.myssm.dao.BookDao">
 <!-- 	ResultMap配置，定義了對象關係映射 -->
-<resultMap id="BookResultMap" type="Book" >
+<resultMap id="BookResultMap" type="com.wes.myssm.entity.Book" >
 	<id property="bookId" column="BOOK_ID"/>
 	<result property="bName" column="BNAME"/>
 	<result property="bNumber" column="BNUMBER"/>

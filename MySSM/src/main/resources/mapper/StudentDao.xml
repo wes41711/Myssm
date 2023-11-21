@@ -15,12 +15,13 @@
 		<result property="pwd" column="SPWD" />
 		<result property="cpwd" column="PWD" />
 		<!-- 一对一的关系映射：配置封装内容 -->
-		<association property="teacher" javaType="Teacher">
+		<association property="teacher" javaType="com.wes.myssm.entity.Teacher">
 			<id property="no" column="TNO" />
 			<result property="name" column="TNAME" />
 			<result property="bday" column="TBDAY" />
 			<result property="sex" column="TSEX" />
 			<result property="mail" column="TMAIL" />
+			<result property="pwd" column="TPWD" />
 			<result property="cpwd" column="PWD" />
 		</association>
 	</resultMap>

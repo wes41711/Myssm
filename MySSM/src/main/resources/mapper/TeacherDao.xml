@@ -6,7 +6,7 @@
 <mapper namespace="com.wes.myssm.dao.TeacherDao">
 
 	<!-- 定義Teacher的resultMap-->
-    <resultMap id="TeacherResultMap" type="Teacher">
+    <resultMap id="TeacherResultMap" type="com.wes.myssm.entity.Teacher">
         <id property="no" column="TNO"></id>
         <result property="name" column="TNAME"></result>
         <result property="bday" column="TBDAY"></result>
@@ -15,7 +15,7 @@
         <result property="pwd" column="TPWD"></result>
         <result property="cpwd" column="PWD"></result>
         <!-- 配置Teacher對象中student集合的映射 -->
-        <collection property="student" ofType="Student">
+        <collection property="student" ofType="com.wes.myssm.entity.Student">
             <id property="no" column="SNO"/>
         	<result property="name" column="SNAME"/>
         	<result property="bday" column="SBDAY"/>

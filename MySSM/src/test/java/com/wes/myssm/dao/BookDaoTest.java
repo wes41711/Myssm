@@ -14,7 +14,7 @@ public class BookDaoTest extends BaseTest {
 
 	@Test
 	public void testQueryById() throws Exception {
-		long bookId = 1003;
+		String bookId = "1003";
 		System.out.println("查詢結果為:" + bookDao.queryById(bookId));
 	}
 

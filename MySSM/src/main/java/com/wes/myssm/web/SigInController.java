@@ -26,8 +26,8 @@ public class SigInController {
 	@RequestMapping("/generateAccount")
 	@ResponseBody
 	public String creatId(@RequestParam("role") String role) {
-	    // 在这里编写生成帳號的逻辑
-	    // 你可以根据角色 (role) 生成相应的帳號
+	    // 在这里编寫生成帳號的邏輯
+	    // 你可以根據角色 (role) 生成相應的帳號
 	    String creatId = userService.createId(role);
 	    
 	    // 返回生成的帳號
