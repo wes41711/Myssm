@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <link
@@ -14,6 +14,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"></script>
@@ -155,14 +156,13 @@ body {
 	margin: 10px; /* 调整间距 */
     vertical-align: middle; /* 使元素垂直居中 */
 }
-
 </style>
 </head>
 <body>
-	<div class="container">
+<div class="container">
 		<h2>註冊</h2>
 		<form action="${pageContext.request.contextPath}/sigIn" method="post" modelAtribute="User">
-			<div class="form-group">
+				<div class="form-group">
 				<label for="no">帳號:(您的身分是?)</label>
 				<input type="radio" name="role" value="T">老師
 				<input type="radio" name="role" value="A" >學生
@@ -170,15 +170,15 @@ body {
  				<input type="button" id="generateAccountBtn" value="產生帳號" style="margin: 5px;">
  				<!-- 用于显示生成的帳號 -->
    				<input type="text" class="generatedAccount" readonly>
-   				<input type="hidden" class=generatedAccount name="no" >
+   				<input type="hidden" class="generatedAccount" name="no">
 			</div>
 			<div class="form-group">
 				<label for="pwd">密碼:</label>
-				<input type="password" id="pwd" name="pwd" class="userPassword" required>
+				<input type="password" id="pwd" class="userPassword" name="pwd" required>
 			</div>
 			<div class="form-group">
 				<label for="cpwd">確認密碼:</label>
-				<input type="password" id="cpwd" name="cpwd" class="userPassword" required>
+				<input type="password" id="cpwd" class="userPassword" name="cpwd" required>
 			</div>
 			<div class="form-group">
 				<label for="name">姓名:</label>
@@ -191,24 +191,23 @@ body {
 			<div class="form-group">
 				<label for="bday">生日:</label>
 				<div class="input-group date" id='date1'>
-					<input type="text" id="bday" class="form-control" name="bday" required/>
+					<input type="text" class="form-control" name="bday"/>
 　　					<span class="input-group-addon">
-　　　					<i class="glyphicon glyphicon-calendar"></i>
+　　　					<i class="glyphicon glyphicon-calendar" ></i>
 					</span>
 				</div>
 			</div>
-			<input type="hidden" id="hiddenBday" name="bday" />
-			<div class="form-group" style="margin-top: 20px;">
+			<div class="form-group" style="margin-top: 15px;">
 				<label for="name" >性別:</label>
-				<input type="radio" name="sex" value="0">男性
-				<input type="radio" name="sex" value="1">女性
+				<input type="radio" name="sex" value="1">男性
+				<input type="radio" name="sex" value="0">女性
 			</div>
 			<div class="form-group">
 				<input type="submit" value="註冊">
-				<a class="btn btn-outline-dark btn-sm" href="./index.jsp" style="float: right;">
-				<strong>返回首頁</strong></a>
-			</div>	
-		</form>	
+				<a class="btn btn-outline-dark btn-sm" href="./index.jsp" style="float: right;"><strong>返回首頁</strong></a>
+			</div>
+		</form>
+			
 	</div>
 </body>
 </html>

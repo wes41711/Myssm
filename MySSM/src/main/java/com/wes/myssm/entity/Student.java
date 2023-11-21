@@ -4,7 +4,8 @@ import com.wes.myssm.bean.User;
 
 public class Student extends User {
 
-	private Teacher teacher; // fk
+	private Teacher teacher; //fk
+
 
 	/**
 	 * @return the teacher
@@ -24,5 +25,8 @@ public class Student extends User {
 	public String toString() {
 		return "Student[" + super.toString() + "], teacher=" + teacher;
 	}
+
+
+	
 
 }

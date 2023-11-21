@@ -31,23 +31,21 @@
         	*
     	FROM
         	TEACHER T
-        INNER JOIN STUDENT S
+        LEFT JOIN STUDENT S
         ON T.TNO = S.TNO 
     	WHERE
         	T.TNO = #{no}
 	</select>
 	
 	<select id="queryAll" resultMap="TeacherResultMap">
-		SELECT
-			*
-		FROM
-			TEACHER T
-		INNER JOIN STUDENT S
-		ON (S.TNO = T.TNO OR S.TNO != T.TNO)
+		SELECT *
+		FROM TEACHER T
+		LEFT JOIN STUDENT S 
+		ON S.TNO = T.TNO
 	</select>
 	
 	<insert id="insertTeacher">
-		INSERT INTO TEACHER VALUES(#{no}, #{name}, #{bday}, #{sex}, #{mail}, #{pwd}, #{cpwd})	
+		INSERT INTO TEACHER VALUES(#{no}, #{name}, #{bday}, #{sex}, #{mail}, #{pwd},#{cpwd})	
 	</insert>
 	
 	<update id="updateTeacher" parameterType="Teacher">

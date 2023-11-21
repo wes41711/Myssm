@@ -3,6 +3,7 @@ package com.wes.myssm.bean;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 import com.wes.myssm.entity.Student;
 import com.wes.myssm.entity.Teacher;
@@ -15,10 +16,10 @@ public class User {
 	private Integer sex;
 	private String mail;
 	private String pwd;
+
 	private String cpwd;
 	
-
-    public static User createUserByNo(String no, User user) {
+	public static User createUserByNo(String no, User user) {
         if ("T".equals(no)) {
             Teacher teacher = new Teacher();
             teacher.setNo(user.no);
@@ -42,7 +43,6 @@ public class User {
         }
         return null;
     }
-	
 	
 	/**
 	 * @return the no
@@ -116,12 +116,14 @@ public class User {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	/**
+	
+    /**
 	 * @return the cpwd
 	 */
 	public String getCpwd() {
 		return cpwd;
 	}
+
 	/**
 	 * @param cpwd the cpwd to set
 	 */
@@ -133,5 +135,6 @@ public class User {
 		return "no=" + no + ", name=" + name + ", bday=" + bday + ", sex=" + sex + ", mail=" + mail + ", pwd="
 				+ pwd + ", cpwd=" + cpwd;
 	}
+	
 	
 }

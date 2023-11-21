@@ -74,14 +74,15 @@ td {
 				</tr>
 			</thead>
 			<tbody>
-					<tr>
-						<td>${obj.getSno()}</td>
-						<td>${obj.getSname()}</td>
-						<td>${obj.getSbday()}</td>
-						<td>${obj.getSsex() == 0 ? "女性" : "男性"}</td>
-						<td>${obj.getSmail()}</td>
-						<td>${obj.getSpwd()}</td>
-					</tr>
+				<tr>
+					<td>${message.getNo()}</td>
+					<td>${message.getName()}</td>
+					<td>${message.getBday()}</td>
+					<td>${message.getSex() == 0 ? "女性" : "男性"}</td>
+					<td>${message.getMail()}</td>
+					<td>${message.getCpwd()}</td>
+				</tr>
+
 			</tbody>
 		</table>
 	</div>

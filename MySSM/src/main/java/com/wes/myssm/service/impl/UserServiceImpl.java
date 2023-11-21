@@ -15,8 +15,6 @@ import com.wes.myssm.entity.Student;
 import com.wes.myssm.entity.Teacher;
 import com.wes.myssm.service.UserService;
 
-import oracle.security.o5logon.b;
-
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -26,7 +24,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private StudentDao studentDao;
 	
-	private Object obj;
+	private User user;
 	
 	public String createId(String id) {
 		
@@ -58,32 +56,36 @@ public class UserServiceImpl implements UserService{
 		return no;
 	}
 	
-	public Object checkId(String id, String pwd) {
+	public User checkIdRole(String id, String pwd) {
 		
 		String idFirst[] = id.split("");
-		
+
 		if(idFirst[0].equals("T")) {
 			Teacher t = teacherDao.queryById(id);
-			return t;
+			user = t;
 		}else if(idFirst[0].equals("A")) {
 			Student s = studentDao.queryById(id);
-			return s;
+			user = s;
 		}
 		
-//		if(userPassword.equals(sysUser.getUserPassword())
-//				|| convertMD5(userPassword).equals(sysUser.getUserPassword())) {
-//			message = "Sign in suceesfully!";
-//			loginMessage = "Congratulations!";
-//			sysUser.setPassword(md5(sysUser.getPassword()));
+		if (user != null) {
+			user.setCpwd(md5(user.getCpwd()));
 		
-		return obj;
+			if(pwd.equals(user.getCpwd())){
+				return user;
+			}
+		}
+		return null;
 	}
 	
 	public boolean creatAccount(User user) {
 		
 		 String idFirst[] = user.getNo().split("");
 		 boolean re = false;
-
+		 
+		 user.setPwd(convertMD5(user.getPwd()));
+		 user.setCpwd(md5(user.getCpwd()));
+		 
 		 User userType = User.createUserByNo(idFirst[0],user);
 
 		 if (userType instanceof Teacher) {
@@ -100,6 +102,7 @@ public class UserServiceImpl implements UserService{
 		 return re;
 	}
 	
+
 	public static String convertMD5(String password) {
 
 		byte[] secretBytes = null;
@@ -128,9 +131,5 @@ public class UserServiceImpl implements UserService{
 		return s;
 
 	}
-
 	
-
-
-
 }

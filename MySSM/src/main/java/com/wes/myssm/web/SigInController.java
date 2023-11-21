@@ -26,22 +26,20 @@ public class SigInController {
 	@RequestMapping("/generateAccount")
 	@ResponseBody
 	public String creatId(@RequestParam("role") String role) {
-	    // 在这里编寫生成帳號的邏輯
-	    // 你可以根據角色 (role) 生成相應的帳號
+
 	    String creatId = userService.createId(role);
 	    
 	    // 返回生成的帳號
 	    return creatId;
 	}
-
 	
 	@RequestMapping("/sigIn")
 	public ModelAndView sigIn(@ModelAttribute User user) {
 		System.out.println("in sigIn");
-		String message = "新增失敗";
+		String message = "";
 		boolean re = userService.creatAccount(user);
 		if(re == true) {
-			message = "新增成功";
+			message = "創建成功,趕緊登入試試吧~";
 		}
 		
 		ModelAndView mv = new ModelAndView("login");

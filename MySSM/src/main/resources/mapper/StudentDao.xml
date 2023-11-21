@@ -32,24 +32,21 @@
 		*
 		FROM
 		STUDENT S
-		INNER JOIN TEACHER T
+		LEFT JOIN TEACHER T
 		ON S.TNO = T.TNO
 		WHERE S.SNO = #{no}
 	</select>
 
 	<select id="queryAll" resultMap="StudentResultMap">
-		SELECT
-		*
-		FROM
-		STUDENT S
-		INNER JOIN TEACHER T
-		ON S.TNO = T.TNO
+		SELECT *
+		FROM STUDENT S
+		LEFT JOIN TEACHER T ON S.TNO = T.TNO
 	</select>
 
 	<insert id="insertStudent" parameterType="Student">
 		INSERT INTO STUDENT
     	VALUES(#{no}, #{name}, #{bday}, #{sex}, #{mail}, #{pwd}, 
-    	#{teacher.no, jdbcType=VARCHAR}, #{cpwd})
+    	#{teacher.no, jdbcType=VARCHAR},#{cpwd})
 	</insert>
 
 	<update id="updateStudent" parameterType="Student">
@@ -59,8 +56,8 @@
 		SSEX = #{sex},
 		SMAIL = #{mail},
 		SPWD = #{pwd},
-		TNO = #{teacher.no, jdbcType=VARCHAR},
-		PWD = {cpwd}
+		TNO = #{teacher.no, jdbcType=VARCHAR}
+		PWD = #{cpwd}
 		WHERE SNO = #{no}
 	</update>
 
