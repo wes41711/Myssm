@@ -64,7 +64,7 @@ td {
 	<div class="infoBody">
 		<table>
 			<thead>
-				<tr>
+				<tr style="text-align: center;">
 					<th>編號</th>
 					<th>姓名</th>
 					<th>生日</th>
@@ -74,10 +74,10 @@ td {
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				<tr style="text-align: center;">
 					<td>${message.getNo()}</td>
 					<td>${message.getName()}</td>
-					<td>${message.getBday()}</td>
+					<td>${message.getFormatDate()}</td>
 					<td>${message.getSex() == 0 ? "女性" : "男性"}</td>
 					<td>${message.getMail()}</td>
 					<td>${message.getCpwd()}</td>

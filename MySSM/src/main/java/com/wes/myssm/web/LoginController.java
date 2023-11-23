@@ -19,7 +19,7 @@ public class LoginController {
 
 	private String message;
 	
-
+	
 	@RequestMapping("/returnLogin")
 	public String returnLogin(){
 		System.out.println("進入Controller");

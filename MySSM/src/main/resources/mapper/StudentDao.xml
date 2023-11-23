@@ -46,7 +46,7 @@
 	<insert id="insertStudent" parameterType="Student">
 		INSERT INTO STUDENT
     	VALUES(#{no}, #{name}, #{bday}, #{sex}, #{mail}, #{pwd}, 
-    	#{teacher.no, jdbcType=VARCHAR},#{cpwd})
+    	#{teacher.no, jdbcType=VARCHAR}, #{cpwd})
 	</insert>
 
 	<update id="updateStudent" parameterType="Student">
@@ -56,7 +56,7 @@
 		SSEX = #{sex},
 		SMAIL = #{mail},
 		SPWD = #{pwd},
-		TNO = #{teacher.no, jdbcType=VARCHAR}
+		TNO = #{teacher.no, jdbcType=VARCHAR},
 		PWD = #{cpwd}
 		WHERE SNO = #{no}
 	</update>

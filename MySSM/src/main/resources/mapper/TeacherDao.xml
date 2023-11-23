@@ -45,7 +45,7 @@
 	</select>
 	
 	<insert id="insertTeacher">
-		INSERT INTO TEACHER VALUES(#{no}, #{name}, #{bday}, #{sex}, #{mail}, #{pwd},#{cpwd})	
+		INSERT INTO TEACHER VALUES(#{no}, #{name}, #{bday}, #{sex}, #{mail}, #{pwd}, #{cpwd})	
 	</insert>
 	
 	<update id="updateTeacher" parameterType="Teacher">
@@ -56,7 +56,7 @@
 	 		TBDAY = #{bday},
 	 		TSEX = #{sex},
 	 		TMAIL = #{mail},
-	 		TPWD = #{pwd}
+	 		TPWD = #{pwd},
 	 		PWD = #{cpwd}
 	 	WHERE
 	 		TNO = #{no}

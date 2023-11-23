@@ -186,7 +186,7 @@ body {
 			</div>
 			<div class="form-group">
 				<label for="mail">信箱:</label>
-				<input type="text" id="mail" name="mail" required>
+				<input type="text"  pattern="^\w+@\w+(\.\w+){1,2}$" title="請輸入正確的信箱格式"  id="mail" name="mail" required>
 			</div>
 			<div class="form-group">
 				<label for="bday">生日:</label>

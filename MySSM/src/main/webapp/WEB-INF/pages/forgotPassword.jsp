@@ -66,25 +66,20 @@ body {
 </head>
 <body>
 	<div class="container">
-		<h2>登入</h2>
-		<form action="${pageContext.request.contextPath}/login" method="post">
+		<h2>找回密碼</h2>
+		<form action="${pageContext.request.contextPath}/forgotPassword" method="post">
 			<div class="form-group">
-				<label for="id">帳號:</label> <input type="text" id="id"
-					name="id" required>
+				<label for="id">帳號:</label>
+				<input type="text" id="id" name="id" required>
 			</div>
 			<div class="form-group">
-				<label for="pwd">密碼:</label> <input type="password" id="pwd"
-					name="pwd" required>
+				<label for="mail">信箱:</label>
+				<input type="text" pattern="^\w+@\w+(\.\w+){1,2}$" title="請輸入正確的信箱格式" id="pwd" name="mail" required>
 			</div>
 			<div class="form-group">
-				<input type="submit" value="登入">
+				<input type="submit" value="發送信件">
 			</div>
 		</form>
-		<a class="btn btn-outline-danger btn-sm"
-			href="${pageContext.request.contextPath}/returnForgotPassword">忘記密碼</a>
-		<c:if test="${not empty error}">
-			<div style="color: red;">${error}</div>
-		</c:if>
 		<p>
 			還沒有帳號？<a class="btn btn-outline-primary btn-sm"
 				href="${pageContext.request.contextPath}/returnSignIn">註冊</a> 

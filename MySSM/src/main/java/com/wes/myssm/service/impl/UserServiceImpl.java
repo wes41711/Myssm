@@ -3,11 +3,13 @@ package com.wes.myssm.service.impl;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wes.myssm.bean.JavaMail;
 import com.wes.myssm.bean.User;
 import com.wes.myssm.dao.StudentDao;
 import com.wes.myssm.dao.TeacherDao;
@@ -25,6 +27,16 @@ public class UserServiceImpl implements UserService{
 	private StudentDao studentDao;
 	
 	private User user;
+	
+	private JavaMail javaMail;
+	
+	@Autowired
+    public void setJavaMail(JavaMail javaMail) {
+        this.javaMail = javaMail;
+        javaMail.setUserName("techLink1020@gmail.com");
+        javaMail.setPassword("wndtsglmwieswvms");
+        javaMail.setSubject("密碼信件");
+    }
 	
 	public String createId(String id) {
 		
@@ -68,10 +80,13 @@ public class UserServiceImpl implements UserService{
 			user = s;
 		}
 		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		user.setFormatDate(dateFormat.format(user.getBday()));
+		
 		if (user != null) {
 			user.setCpwd(md5(user.getCpwd()));
 		
-			if(pwd.equals(user.getCpwd())){
+			if(pwd.equals(user.getCpwd()) && convertMD5(pwd).equals(user.getPwd())){
 				return user;
 			}
 		}
@@ -102,8 +117,51 @@ public class UserServiceImpl implements UserService{
 		 return re;
 	}
 	
+	public boolean checkIdMail(String id, String mail) {
+		String idFirst[] = id.split("");
 
-	public static String convertMD5(String password) {
+		if(idFirst[0].equals("T")) {
+			Teacher teacher = teacherDao.queryById(id);
+
+			if (teacher != null) {
+				if(mail.equals(teacher.getMail())){
+					resetPassword(teacher);
+
+					return true;
+				}
+			}
+		}else if(idFirst[0].equals("A")) {
+			Student student = studentDao.queryById(id);
+			
+			if (student != null) {
+				if(mail.equals(student.getMail())){
+					resetPassword(student);
+					
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	public void resetPassword(Teacher teacher) {
+		teacher.setPwd(convertMD5(teacher.getNo()));
+		teacher.setCpwd(md5(teacher.getNo()));
+		teacherDao.updateTeacher(teacher);
+		javaMail.setCustomer(teacher.getMail());
+		javaMail.SendMail();
+	}
+	
+	public void resetPassword(Student student) {
+		student.setPwd(convertMD5(student.getNo()));
+		student.setCpwd(md5(student.getNo()));
+		studentDao.updateStudent(student);
+		javaMail.setCustomer(student.getMail());
+		javaMail.SendMail();
+	}
+	
+	public String convertMD5(String password) {
 
 		byte[] secretBytes = null;
 		try {
@@ -121,7 +179,7 @@ public class UserServiceImpl implements UserService{
 
 	}
 
-	public static String md5(String inStr) {
+	public String md5(String inStr) {
 
 		char[] a = inStr.toCharArray();
 		for (int i = 0; i < a.length; i++) {
@@ -131,5 +189,7 @@ public class UserServiceImpl implements UserService{
 		return s;
 
 	}
+
+
 	
 }
