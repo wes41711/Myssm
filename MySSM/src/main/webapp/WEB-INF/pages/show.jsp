@@ -7,9 +7,17 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<title>個人資料顯示頁</title>
+<title>showInfo</title>
 <base target="_self" />
 <link rel="icon" href="./favicon.ico" />
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script language="javascript">
+$(function() {
+	 var noValue = "${message.getNo()}";
+	alert(noValue);
+
+});
+</script>
 <style>
 body {
 	height: 100vh;
@@ -58,8 +66,8 @@ td {
 </head>
 <body>
 	<div class="textbody">
-		<h1>個人資料</h1>
-		<a class="btn btn-outline-dark mt-4" href="${pageContext.request.contextPath}/returnLogin"><strong>返回</strong></a>
+ 		<h1>個人資料</h1><!--returnLogin -->
+		<a class="btn btn-outline-dark mt-4" href="${pageContext.request.contextPath}/returnLogin"><strong>登出</strong></a>
 	</div>
 	<div class="infoBody">
 		<table>
@@ -82,9 +90,13 @@ td {
 					<td>${message.getMail()}</td>
 					<td>${message.getCpwd()}</td>
 				</tr>
-
 			</tbody>
 		</table>
 	</div>
+	<form action="${pageContext.request.contextPath}/returnBook" method="post">
+		<input type="hidden" name="no" value="${message.getNo()}">
+		<input type="hidden" name="name" value="${message.getName()}">
+		<input class="btn btn-outline-dark mt-4" type="submit" value="使用圖書系統" >
+	</form>
 </body>
 </html>

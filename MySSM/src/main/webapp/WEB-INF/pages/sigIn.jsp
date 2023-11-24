@@ -13,7 +13,7 @@
 	  rel="stylesheet" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>signIn</title>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
@@ -21,11 +21,11 @@
 <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script language="javascript">
 $(function() {
-    // 给 "產生帳號" 按钮添加点击事件
+    // 给 "產生帳號" 按鈕添加點擊事件
     $("#generateAccountBtn").click(function() {
-       // 获取选中的单选按钮的值
+       // 獲取選中的單選按鈕的值
        var selectedValue = $("input[name='role']:checked").val();
-       // 发送 Ajax 请求生成帳號
+       // 發送 Ajax 請求生成帳號
        $.ajax({
           type: "GET",
           url: "${pageContext.request.contextPath}/generateAccount",
@@ -33,7 +33,7 @@ $(function() {
              role: selectedValue
           },
           success: function(generatedAccount) {
-             // 将生成的帳號设置到相应的输入框中
+             // 將生成的帳號設置到相應的輸入框中
              $(".generatedAccount").val(generatedAccount);
           },
           error: function(error) {
@@ -69,37 +69,37 @@ $(function() {
 // 		  ]
 		});
 	
-	 // 注册表单提交事件监听器
+	 // 註冊表單提交事件監聽器
     $('form').submit(function(event) {
-    	// 获取身分的 radio 元素
+    	// 獲取身分的 radio 元素
         var roleRadio = $('input[name="role"]');
         var roleChecked = false;
 
-        // 检查是否有一个身分被选中
+        // 檢查是否有身分被選中
         roleRadio.each(function() {
             if ($(this).prop('checked')) {
             	roleChecked = true;
             }
         });
 
-        // 如果没有身分被选中，阻止表单提交并提示用户
+        // 如果没有身分被選中，阻止表單提交並提示用户
         if (!roleChecked) {
             alert('請選擇身分');
             event.preventDefault();
         }
     
-        // 获取性别的 radio 元素
+        // 獲取性别的 radio 元素
         var sexRadio = $('input[name="sex"]');
         var sexChecked = false;
 
-        // 检查是否有一个性别被选中
+        // 檢查是否有性别被選中
         sexRadio.each(function() {
             if ($(this).prop('checked')) {
                 sexChecked = true;
             }
         });
 
-        // 如果没有性别被选中，阻止表单提交并提示用户
+        // 如果没有性别被選中，阻止表單提交並提示用户
         if (!sexChecked) {
             alert('請選擇性别');
             event.preventDefault();
@@ -166,9 +166,9 @@ body {
 				<label for="no">帳號:(您的身分是?)</label>
 				<input type="radio" name="role" value="T">老師
 				<input type="radio" name="role" value="A" >學生
-				<br/><!-- 使用 type="button" 防止提交表单 -->
+				<br/><!-- 使用 type="button" 防止提交表單 -->
  				<input type="button" id="generateAccountBtn" value="產生帳號" style="margin: 5px;">
- 				<!-- 用于显示生成的帳號 -->
+ 				<!-- 用於顯示生成的帳號 -->
    				<input type="text" class="generatedAccount" readonly>
    				<input type="hidden" class="generatedAccount" name="no">
 			</div>
