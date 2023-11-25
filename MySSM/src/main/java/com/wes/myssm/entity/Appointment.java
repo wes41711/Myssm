@@ -2,13 +2,17 @@ package com.wes.myssm.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
+
 public class Appointment {
 	private String pka; // PK
 
 	private String bookId;// 圖書ID
 
 	private String noId;// 學號
-
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date appointDate;// 預約時間
 
 	private Book book;// 一對一

@@ -4,10 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wes.myssm.bean.AppointmentWrapper;
+import com.wes.myssm.entity.Appointment;
 import com.wes.myssm.entity.Book;
 import com.wes.myssm.service.BookService;
 
@@ -26,17 +30,22 @@ public class BookController {
 		mv.addObject("name", name);
 		
 		List<Book> books = bookService.queryAllBook();
+		List<Appointment> appointments = bookService.queryAppointmentById(no);
 		
 		mv.addObject("books", books);
+		mv.addObject("appointments", appointments);
 		
 		return mv;
 	}
 	
 	@RequestMapping("/appointment")
-	public ModelAndView appointmentBook(@RequestParam("bookId") List<String> bookId) {
-		System.out.println("in appointment");
-		
-		ModelAndView mv = new ModelAndView("login");
-		return mv;
+	@ResponseBody
+	public List<Appointment> appointmentBook(@ModelAttribute("appointmentsWrapper") AppointmentWrapper appointmentsWrapper, @RequestParam("no") String noId) {
+	    System.out.println("in appointment");
+	    List<Appointment> appointments = appointmentsWrapper.getAppointments();
+	    // 在這裡處理你的 Appointment 對象列表
+	    // bookService.insertAppoint(appointments);
+	    List<Appointment> resultAppointments = bookService.queryAppointmentById(noId);
+	    return resultAppointments;
 	}
 }

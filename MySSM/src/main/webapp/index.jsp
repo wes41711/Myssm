@@ -31,7 +31,7 @@ body {
 }
 </style>
 <script language="javascript">
-        alert("666");
+
 </script>
 </head>
 <body>
