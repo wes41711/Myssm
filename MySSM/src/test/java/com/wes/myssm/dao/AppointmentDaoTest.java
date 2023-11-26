@@ -1,5 +1,6 @@
 package com.wes.myssm.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class AppointmentDaoTest extends BaseTest {
 		
 	@Test
 	public void testQueryById() throws Exception {
-		System.out.println(appointmentDao.queryById("A011000"));
+		System.out.println(appointmentDao.queryById("T005"));
 	}
 	
 	@Test
@@ -44,6 +45,22 @@ public class AppointmentDaoTest extends BaseTest {
 	@Test
 	public void testDeleteAppointment() throws Exception{
 		System.out.println("刪除結果為:" + appointmentDao.deleteAppointment("A011000"));
+	}
+	
+	@Test
+	public void testInsertManyAppointment() throws Exception{
+		List<Appointment> appointments = new ArrayList<Appointment>();
+		Appointment a = new Appointment();
+		Appointment b = new Appointment();
+		a.setPka("1");
+		a.setBookId("1000");
+		a.setNoId("T005");
+		b.setPka("2");
+		b.setBookId("1000");
+		b.setNoId("T005");
+		appointments.add(a);
+		appointments.add(b);
+		appointmentDao.insertManyAppointment(appointments);
 	}
 	
 	@Test

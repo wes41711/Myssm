@@ -3,9 +3,12 @@ package com.wes.myssm.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.AttributeList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.util.ArrayBuilders.BooleanBuilder;
 import com.wes.myssm.bean.JavaMail;
 import com.wes.myssm.dao.AppointmentDao;
 import com.wes.myssm.dao.BookDao;
@@ -22,9 +25,6 @@ public class BookServiceImpl implements BookService {
 	@Autowired
 	private AppointmentDao appointmentDao;
 	
-	@Autowired
-    private ArrayList<Appointment> appointments;
-	
 
 	public List<Book> queryAllBook() {
 		List<Book> Books = bookDao.queryAllBook();
@@ -36,12 +36,14 @@ public class BookServiceImpl implements BookService {
 		return appointments;
 	}
 
-	public boolean insertAppoint(Appointment app) {
-		String apps[] = app.getBookId().split(",");
+	public boolean insertAppoint(List<Appointment> app) {
+		List<Appointment> appointments = new ArrayList<Appointment>();
 		
-		for(String s : apps) {
-			app.setBookId(s);
-			appointments.add(app);
+		for(Appointment a : app) {
+			if(a.getBookId() != null && !a.getBookId().isEmpty()) {
+				a.setPka(a.getBookId() + a.getNoId());
+				appointments.add(a);
+			}
 		}
 		
 		return appointmentDao.insertManyAppointment(appointments);

@@ -57,23 +57,6 @@ $(function () {
                 }
             });
             
-            $('#appointment').submit(function(e){
-            	$.ajax({
-            		type : 'POST',
-            		url : "${pageContext.request.contextPath}/appointment",
-            		data: $(this).serialize(), // 將表單數據序列化為 URL 編碼字符串
-                    success: function(response) {
-                    // 請求成功時的處理邏輯
-                    console.log('Success:', response);
-                    },
-                    
-                    error: function(error) {
-                    	// 請求失敗時的處理邏輯
-                    	console.error('Error:', error);
-                    }
-                });
-			});
-            
          	// 點擊按鈕時執行
             $("#submitBtn").click(function () {
                 // 獲取源 input 的值
@@ -168,7 +151,7 @@ $(function () {
                             <td>${book.bookId}</td>
                             <td>${book.bName}</td>
                             <td>${book.bNumber}</td>
-                            <input type="hidden" class="paste" name="appointments[${status.index}].noId" value="${no}">
+                            <input type="hidden" name="appointments[${status.index}].noId" value="${no}">
                             <input type="hidden" class="paste" name="appointments[${status.index}].appointDate">
                         </tr>
                     </c:forEach>
@@ -181,7 +164,7 @@ $(function () {
                 <div class="input-group date" id='date1'>
                     <input type="text" class="form-control" id="copy" required />
                     <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-calendar"></i>
+                        <i id="btn" class="glyphicon glyphicon-calendar"></i>
                     </span>
                 </div>
             </div>

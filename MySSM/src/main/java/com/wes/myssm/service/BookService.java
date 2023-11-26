@@ -8,6 +8,6 @@ import com.wes.myssm.entity.Book;
 public interface BookService {
 	public List<Book> queryAllBook();
 	public List<Appointment> queryAppointmentById(String s);
-	public boolean insertAppoint(Appointment app);
+	public boolean insertAppoint(List<Appointment> app);
 	public List<Appointment> deleteAppointments(List<String> a);
 }

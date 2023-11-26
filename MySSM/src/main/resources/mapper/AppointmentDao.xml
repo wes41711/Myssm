@@ -26,7 +26,7 @@
 		ON 
 			A.BOOK_ID = B.BOOK_ID
 		WHERE 
-			A.PKA = #{pka}
+			A.NO_ID = #{noId}
 	</select>
 	
 	<select id="queryAll" resultMap="AppointmentResultMap">
@@ -43,17 +43,24 @@
 	<insert id="insertAppointment" parameterType="Appointment">
 		INSERT INTO APPOINTMENT VALUES(#{pka}, #{bookId}, #{noId}, #{appointDate})
 	</insert>
-	
-	<insert id="insertManyAppointment" parameterType="java.util.ArrayList">
-		INSERT INTO APPOINTMENT (pka, bookId, noId, appointDate) VALUES
-		<foreach collection="list" item="item" index="index" separator=",">
-            (#{item.pka},#{item.bookId},#{item.noId}, #{appointDate})
-        </foreach>
-	</insert>
+		
+<insert id="insertManyAppointment" parameterType="java.util.List" useGeneratedKeys = "false">
+    INSERT INTO APPOINTMENT (PKA, BOOK_ID, NO_ID, APPOINT_DATE)
+    <foreach collection="list" item="item" index="index" separator="union all">
+        (	
+        	SELECT
+            #{item.pka}, 
+            #{item.bookId}, 
+            #{item.noId}, 
+            #{item.appointDate, jdbcType=TIMESTAMP}
+        	FROM DUAL
+        )
+    </foreach>
+</insert>
 	
 	<update id="updateAppointment" parameterType="Appointment">
 		UPDATE APPOINTMENT 
-		SET BOOK_ID = #{bookId}, 
+		SET BOOK_ID = #{bookId},
 			NO_ID = #{noId}, 
 			APPOINT_DATE = #{appointDate}
 		WHERE PKA = #{pka}

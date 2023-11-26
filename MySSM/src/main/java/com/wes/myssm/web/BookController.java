@@ -40,12 +40,14 @@ public class BookController {
 	
 	@RequestMapping("/appointment")
 	@ResponseBody
-	public List<Appointment> appointmentBook(@ModelAttribute("appointmentsWrapper") AppointmentWrapper appointmentsWrapper, @RequestParam("no") String noId) {
+	public List<Appointment> appointmentBook(@ModelAttribute("appointmentsWrapper") AppointmentWrapper appointmentsWrapper, @RequestParam("no") String no) {
 	    System.out.println("in appointment");
-	    List<Appointment> appointments = appointmentsWrapper.getAppointments();
-	    // 在這裡處理你的 Appointment 對象列表
-	    // bookService.insertAppoint(appointments);
-	    List<Appointment> resultAppointments = bookService.queryAppointmentById(noId);
+	    
+	    bookService.insertAppoint(appointmentsWrapper.getAppointments());
+	    
+	    List<Appointment> resultAppointments = bookService.queryAppointmentById(no);
+	    
+	    
 	    return resultAppointments;
 	}
 }
