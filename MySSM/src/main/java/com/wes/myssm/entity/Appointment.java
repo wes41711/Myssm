@@ -3,7 +3,6 @@ package com.wes.myssm.entity;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Component;
 
 public class Appointment {
 	private String pka; // PK
@@ -16,6 +15,8 @@ public class Appointment {
 	private Date appointDate;// 預約時間
 
 	private Book book;// 一對一
+	
+	private String formatDate;
 
 	/**
 	 * 
@@ -111,10 +112,25 @@ public class Appointment {
 		this.book = book;
 	}
 
+	/**
+	 * @return the formatDate
+	 */
+	public String getFormatDate() {
+		return formatDate;
+	}
+
+	/**
+	 * @param formatDate the formatDate to set
+	 */
+	public void setFormatDate(String formatDate) {
+		this.formatDate = formatDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Appointment [pka=" + pka + ", bookId=" + bookId + ", noId=" + noId + ", appointDate=" + appointDate
-				+ ", book=" + book + "]";
+				+ ", book=" + book + ", formatDate=" + formatDate + "]";
 	}
 
+	
 }

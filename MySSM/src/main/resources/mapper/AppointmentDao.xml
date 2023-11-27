@@ -16,6 +16,19 @@
 		</association>
 	</resultMap>
 	
+	<select id="query" resultMap="AppointmentResultMap">
+		SELECT 
+			*
+		FROM 
+			APPOINTMENT A
+		INNER JOIN 
+			BOOK B
+		ON 
+			A.BOOK_ID = B.BOOK_ID
+		WHERE 
+			A.PKA = #{pka}
+	</select>
+	
 	<select id="queryById" resultMap="AppointmentResultMap">
 		SELECT 
 			*
@@ -72,37 +85,10 @@
 	</delete>
 	
 	<delete id="deleteManyAppointment" parameterType="java.util.List">
-		DELETE APPOINTMENT
-		 <where>
-            PKA IN
-            <foreach collection="list" item="item" separator=","
-                     open="(" close=")" index="index">
-                #{item}
-            </foreach>
-        </where>
+    	DELETE FROM APPOINTMENT WHERE PKA IN
+    	<foreach collection="list" item="item" open="(" separator="," close=")">
+        	#{item}
+    	</foreach>
 	</delete>
-	
-	<insert id="insertAppointmentTest">
-		<!-- ignore 主键冲突，报错 -->
-		INSERT ignore INTO appointment (book_id, student_id)
-		VALUES (#{bookId}, #{studentId})
-	</insert>
-	
-	<select id="queryByKeyWithBook" resultType="Appointment">
-		<!-- 如何告诉MyBatis把结果映射到Appointment同时映射book属性 -->
-		<!-- 可以自由控制SQL -->
-		SELECT
-			a.book_id,
-			a.student_id,
-			a.appoint_time,
-			b.book_id "book.book_id",
-			b.`name` "book.name",
-			b.number "book.number"
-		FROM
-			appointment a
-		INNER JOIN book b ON a.book_id = b.book_id
-		WHERE
-			a.book_id = #{bookId}
-		AND a.student_id = #{studentId}
-	</select>
+
 </mapper>

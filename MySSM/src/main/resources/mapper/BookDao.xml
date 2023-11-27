@@ -10,7 +10,7 @@
 	<result property="bName" column="BNAME"/>
 	<result property="bNumber" column="BNUMBER"/>
 </resultMap>
-	<select id="queryById" resultType="Book" parameterType="long">
+	<select id="queryById" resultType="Book" parameterType="String">
 		<!-- 具體的sql -->
 		SELECT
 			*
@@ -45,18 +45,26 @@
 			BOOK_ID = #{bookId}
 	</update>
 	
+		
+	<update id="updateManyBook" parameterType="java.util.List">
+		<foreach collection="list" index="index" item="item" open="begin" close=";end;" separator=";">
+			UPDATE BOOK
+			<set>
+				<if test="item.bName != null">
+					BNAME = #{item.bName},
+				</if>
+				<if test="item.bNumber != null">
+					BNUMBER = #{item.bNumber},
+				</if>
+			</set>
+			WHERE BOOK_ID = #{item.bookId}
+		</foreach>	
+	</update>
+	
 	<delete id="deleteBook" parameterType="long">
 		DELETE 
 			BOOK
 		WHERE 
 			BOOK_ID = #{bookId}
 	</delete>
-	
-	<update id="reduceNumber">
-		UPDATE BOOK
-		SET number = number - 1
-		WHERE
-			BOOK_ID = #{bookId}
-		AND number > 0
-	</update>
 </mapper>

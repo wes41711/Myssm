@@ -69,8 +69,8 @@ body {
 		<h2>登入</h2>
 		<form action="${pageContext.request.contextPath}/login" method="post">
 			<div class="form-group">
-				<label for="id">帳號:</label> <input type="text" id="id"
-					name="id" required>
+				<label for="id">帳號:</label> <input type="text" id="no"
+					name="no" required>
 			</div>
 			<div class="form-group">
 				<label for="pwd">密碼:</label> <input type="password" id="pwd"

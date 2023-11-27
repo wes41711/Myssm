@@ -95,6 +95,7 @@ td {
 	<form action="${pageContext.request.contextPath}/returnBook" method="post">
 		<input type="hidden" name="no" value="${message.getNo()}">
 		<input type="hidden" name="name" value="${message.getName()}">
+		<input type="hidden" name="pwd" value="${pwd}">
 		<input class="btn btn-outline-dark mt-4" type="submit" value="使用圖書系統" >
 	</form>
 </body>

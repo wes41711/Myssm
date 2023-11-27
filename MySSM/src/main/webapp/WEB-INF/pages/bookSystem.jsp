@@ -17,10 +17,6 @@
 <script language="javascript">
 $(function () {
 		$(document).ready(function () {
-			$("#goBackBtn").click(function () {
-				window.history.back();
-			});
-
              $('#date1').datetimepicker({
              	date: null, //一開始輸入框的日期為空
              	format: 'YYYY-MM-DD', //日期的顯示格式
@@ -38,9 +34,29 @@ $(function () {
                 });
 
                 // 註冊表單提交事件監聽器
-			$('form').submit(function (event) {
+			$('#appointment').submit(function (event) {
                     // 獲取書號的 checkbox 元素
             	var bookCheckboxes = $('.bookId');
+                var bookIdChecked = false;
+
+                    // 檢查是否有書被選中
+                bookCheckboxes.each(function () {
+                	if ($(this).prop('checked')) {
+                    	bookIdChecked = true;
+                    }
+                });
+
+                    // 如果没有書被選中，阻止表單提交並提示用户
+                if (!bookIdChecked) {
+                	alert('請至少選擇一本書');
+                    event.preventDefault();
+                }
+            });
+                
+            // 註冊表單提交事件監聽器
+			$('#deleteAppointment').submit(function (event) {
+                    // 獲取書號的 checkbox 元素
+            	var bookCheckboxes = $('.deleteBookId');
                 var bookIdChecked = false;
 
                     // 檢查是否有書被選中
@@ -131,7 +147,11 @@ $(function () {
 <body>
     <div class="textbody">
         <h1>歡迎'${name}'進入圖書系統</h1>
-        <button class="btn btn-primary" id="goBackBtn"><strong>返回個人頁</strong></button>
+        <form action="${pageContext.request.contextPath}/login" method="post">
+        	<input type="hidden" name="no" value="${no}">
+			<input type="hidden" name="pwd" value="${pwd}">
+        	<button class="btn btn-primary"><strong>返回個人頁</strong></button>
+        </form>
     </div>
     <form id="appointment" action="${pageContext.request.contextPath}/appointment" method="post" modelAttribute="appointmentsWrapper">
         <div class="infoBody">
@@ -169,10 +189,12 @@ $(function () {
                 </div>
             </div>
             <input type="hidden" name="no" value="${no}">
+            <input type="hidden" name="pwd" value="${pwd}">
+            <input type="hidden" name="name" value="${name}">
             <input type="submit" id="submitBtn" class="btn btn-primary" value="預借">
         </div>
     </form>
-    
+    <form id="deleteAppointment" action="${pageContext.request.contextPath}/deleteAppointment" method="post">
     <div class=infoBody>
     	<table>
     		<thead>
@@ -184,15 +206,20 @@ $(function () {
     		<tbody>
     			<c:forEach var="app" items="${appointments}">
     				<tr>
-    					<td><input type="checkbox" name="pka" value="${app.pka}"></td>
+    					<td><input type="checkbox" class="deleteBookId" name="pka" value="${app.pka}"></td>
     					<td>${app.bookId}</td>
     					<td>${app.book.bName}</td>
-    					<td>${app.appointDate}</td>
+    					<td>${app.formatDate}</td>
     				</tr>
     			</c:forEach>
     		</tbody>
     	</table>
-    </div>
+    </div>		
+    	<input type="hidden" name="no" value="${no}">
+    	<input type="hidden" name="pwd" value="${pwd}">
+    	<input type="hidden" name="name" value="${name}">
+    	<input type="submit" class="btn btn-primary" value="歸還">
+    </form>
 </body>
 
 </html>

@@ -27,12 +27,13 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/login")
-	public ModelAndView login(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
+	public ModelAndView login(@RequestParam("no") String no, @RequestParam("pwd") String pwd) {
 		System.out.println("in login");
 		
 		ModelAndView mv = new ModelAndView("show");
+		mv.addObject("pwd",pwd);
 		
-		User user = userService.checkIdRole(id, pwd);
+		User user = userService.checkIdRole(no, pwd);
 		
 		if(user == null) {
 			message = "查無帳號,請註冊";
