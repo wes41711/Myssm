@@ -31,5 +31,5 @@
 	 </bean>
 	 
 	 <!-- 4.扫描web相关的bean -->
-	 <context:component-scan base-package="com.wes.myssm.web" />
+	 <context:component-scan base-package="com.wes.myssm.controller" />
 </beans>

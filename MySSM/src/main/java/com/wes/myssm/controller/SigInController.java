@@ -1,4 +1,4 @@
-package com.wes.myssm.web;
+package com.wes.myssm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

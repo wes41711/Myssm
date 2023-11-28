@@ -1,4 +1,4 @@
-package com.wes.myssm.web;
+package com.wes.myssm.controller;
 
 import java.util.List;
 

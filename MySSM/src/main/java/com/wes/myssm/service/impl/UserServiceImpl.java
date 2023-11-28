@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.wes.myssm.bean.JavaMail;
 import com.wes.myssm.bean.User;
+import com.wes.myssm.dao.RelationDao;
 import com.wes.myssm.dao.StudentDao;
 import com.wes.myssm.dao.TeacherDao;
+import com.wes.myssm.entity.Relation;
 import com.wes.myssm.entity.Student;
 import com.wes.myssm.entity.Teacher;
 import com.wes.myssm.service.UserService;
@@ -25,6 +27,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private StudentDao studentDao;
+	
+	@Autowired
+	private RelationDao relationDao;
 	
 	private User user;
 	
@@ -94,7 +99,8 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public boolean creatAccount(User user) {
-		
+		 Relation relation = new Relation();
+		 
 		 String idFirst[] = user.getNo().split("");
 		 boolean re = false;
 		 
@@ -104,12 +110,18 @@ public class UserServiceImpl implements UserService{
 		 User userType = User.createUserByNo(idFirst[0],user);
 
 		 if (userType instanceof Teacher) {
-			 System.out.println("Teacher");
+			 relation.setNoId(user.getNo());
+			 relation.setRtype("TEACHER");
+			 relationDao.insertRelation(relation);
+			 
 			 Teacher teacher = (Teacher) userType;
 			 re = teacherDao.insertTeacher(teacher);
 		 }
 		 else if(userType instanceof Student) {
-			 System.out.println("Student");
+			 relation.setNoId(user.getNo());
+			 relation.setRtype("STUDENT");
+			 relationDao.insertRelation(relation);
+			 
 			 Student student = (Student) userType;
 			 re = studentDao.insertStudent(student);
 		    }

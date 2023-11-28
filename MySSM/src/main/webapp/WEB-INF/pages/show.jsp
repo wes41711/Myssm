@@ -14,7 +14,6 @@
 <script language="javascript">
 $(function() {
 	 var noValue = "${message.getNo()}";
-
 });
 </script>
 <style>
