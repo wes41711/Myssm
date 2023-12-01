@@ -9,6 +9,13 @@ public class Teacher extends User {
 	private List<Student> student;
 
 	/**
+	 * @return the student
+	 */
+	public List<Student> getStudent() {
+		return student;
+	}
+
+	/**
 	 * @param student the student to set
 	 */
 	public void setStudent(List<Student> student) {

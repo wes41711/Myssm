@@ -85,10 +85,10 @@ public class UserServiceImpl implements UserService{
 			user = s;
 		}
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		user.setFormatDate(dateFormat.format(user.getBday()));
-		
 		if (user != null) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+			user.setFormatDate(dateFormat.format(user.getBday()));
+			
 			user.setCpwd(md5(user.getCpwd()));
 		
 			if(pwd.equals(user.getCpwd()) && convertMD5(pwd).equals(user.getPwd())){

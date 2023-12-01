@@ -160,8 +160,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "no=" + no + ", name=" + name + ", bday=" + bday + ", sex=" + sex + ", mail=" + mail + ", pwd=" + pwd
-				+ ", cpwd=" + cpwd + ", formatDate=" + formatDate;
+		return "User [no=" + no + ", name=" + name + ", bday=" + bday + ", sex=" + sex + ", mail=" + mail + ", pwd="
+				+ pwd + ", cpwd=" + cpwd + ", formatDate=" + formatDate + "]";
 	}
 
 }
