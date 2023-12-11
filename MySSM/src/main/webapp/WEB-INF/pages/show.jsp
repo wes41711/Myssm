@@ -62,10 +62,6 @@ table {
 	border-collapse: collapse;
 	text-align: center;
  }
-
-/* td { */
-/* 	padding: 0 5px; */
-/* } */
 </style>
 </head>
 <body>
@@ -107,7 +103,6 @@ table {
 			</tbody>
 		</table>
 	</div>
-	<form action="${pageContext.request.contextPath}/returnUpdate" method="post">
 	
 	<c:if test="${message.getClass().getName() eq 'com.wes.myssm.entity.Teacher'}">
 		<div class="textbody">

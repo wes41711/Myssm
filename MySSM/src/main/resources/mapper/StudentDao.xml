@@ -2,10 +2,9 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 目的：为dao接口方法提供sql语句配置 -->
+    <!-- 目的：為dao接口方法提供sql語句配置 -->
 <mapper namespace="com.wes.myssm.dao.StudentDao">
-
-	<!-- ResultMap配置，定义了对象关系映射 -->
+	<!-- ResultMap配置，定義對象關係映射 -->
 	<resultMap id="StudentResultMap" type="com.wes.myssm.entity.Student">
 		<id property="no" column="SNO" />
 		<result property="name" column="SNAME" />
@@ -14,7 +13,7 @@
 		<result property="mail" column="SMAIL" />
 		<result property="pwd" column="SPWD" />
 		<result property="cpwd" column="PWD" />
-		<!-- 一对一的关系映射：配置封装内容 -->
+		<!-- 一對一的關係映射：配置封装内容 -->
 		<association property="teacher" javaType="com.wes.myssm.entity.Teacher">
 			<id property="no" column="TNO" />
 			<result property="name" column="TNAME" />

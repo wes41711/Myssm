@@ -38,18 +38,15 @@ public class UserServiceImpl implements UserService{
 	@Autowired
     public void setJavaMail(JavaMail javaMail) {
         this.javaMail = javaMail;
-        javaMail.setUserName("techLink1020@gmail.com");
-        javaMail.setPassword("wndtsglmwieswvms");
+        javaMail.setUserName("信箱帳號(寄件)");
+        javaMail.setPassword("信箱密碼(寄件)");
         javaMail.setSubject("密碼信件");
     }
 	
 	public String createId(String id) {
-		
 		String no = "";
 		int num = 0;
-		
 		if(id.equalsIgnoreCase("T")) {
-			
 			List<Teacher> teachers = teacherDao.queryAll();
 			num = teachers.size();
 			num++;
@@ -161,6 +158,7 @@ public class UserServiceImpl implements UserService{
 		teacher.setPwd(convertMD5(teacher.getNo()));
 		teacher.setCpwd(md5(teacher.getNo()));
 		teacherDao.updateTeacher(teacher);
+		javaMail.setTxt(teacher.getNo());
 		javaMail.setCustomer(teacher.getMail());
 		javaMail.SendMail();
 	}
@@ -169,6 +167,7 @@ public class UserServiceImpl implements UserService{
 		student.setPwd(convertMD5(student.getNo()));
 		student.setCpwd(md5(student.getNo()));
 		studentDao.updateStudent(student);
+		javaMail.setTxt(student.getNo());
 		javaMail.setCustomer(student.getMail());
 		javaMail.SendMail();
 	}
